@@ -1,0 +1,199 @@
+<html>
+  <head>
+    <!--
+      black #191919
+
+    -->
+    <style>
+      html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed, 
+      figure, figcaption, footer, header, hgroup, 
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      @font-face {
+        font-family: Avenir;
+        src: url(avenir-lt-pro/AvenirLTProHeavy.otf);
+        font-weight: 300;
+      }
+      @font-face {
+        font-family: Avenir;
+        src: url(avenir-lt-pro/AvenirLTProLight.otf);
+        font-weight: 100;
+      }
+      body {
+        font-family: Avenir, sans-serif;
+        font-weight: 300;
+      }
+      input {
+        opacity: 0;
+        display: absolute;
+        z-index: 0;
+      }
+      #tapped {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        z-index: 10;
+        background-color: white;
+      }
+      #tapped #checkmark-container {
+        background: #328633;
+        color: white;
+        font-family: Avenir, sans-serif;
+        text-align: center;
+        height: 50%;
+        font-size: 100px;
+        position: relative;
+      }
+      #tapped #checkmark {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        color: white;
+      }
+      #checkmark img {
+        height: 200px;
+      }
+      #tapped #text {
+        text-align: center;
+        color: #191919;
+        font-family: Avenir, sans-serif;
+        margin-top: 50px;
+        font-size: 100px;
+      }
+
+      #untapped {
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+
+      #untapped img {
+        height: 25px;
+        margin: 10px;
+      }
+      
+      #untapped img.bottom {
+        height: 40px;
+        margin-left: 25px;
+      }
+
+      #untapped img#agency {
+        height: 125px;
+      }
+
+      #untapped #top-text {
+        font-size: 50px;
+      }
+
+      #untapped #bottom-text {
+        font-size: 35px;
+        font-weight: 100;
+      }
+
+    </style>
+  </head>
+  <body>
+    <input type="text" autofocus>
+
+    <div id="tapped">
+      <div id="checkmark-container">
+        <div id="checkmark">
+          <img src="assets/check.svg">
+        </div>
+      </div>
+      <div id="text">
+        Accepted
+      </div>
+    </div>
+
+    <div id="untapped">
+      <img src="assets/ttc.svg" id="agency">
+      <br>
+      <img src="assets/visa.svg.png">
+      <img src="assets/mastercard.svg.png">
+      <img src="assets/amex.svg.png">
+      <img src="assets/interac.svg.png">
+      <br>
+      <img src="assets/presto.png" class="bottom">
+      <img src="assets/applepay.svg" class="bottom">
+      <img src="assets/googlepay.png" class="bottom">
+      <br>
+      <br>
+      <span id="top-text">Tap Card on Reader</span>
+      <hr>
+      <span id="bottom-text">Presenter la carte sur la lecteur</span>
+    </div>
+
+    <script>
+      var audio = new Audio('assets/beep.mp3');
+      console.log("test")
+
+      window.tapped = false
+
+      document.getElementById('tapped').style.display = 'none';
+
+      document.addEventListener("input", (event) => {
+        if(!window.tapped) {
+          console.log("Tapped")
+          window.tapped = true
+          audio.play();
+          document.getElementById('tapped').style.display = 'inline';
+          setTimeout(function() {
+            window.tapped = false 
+            document.getElementById('tapped').style.display = 'none';
+          }, 3000)
+        }
+      });
+    </script>
+  </body>
+</html>
